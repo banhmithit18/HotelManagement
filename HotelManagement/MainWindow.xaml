@@ -1,0 +1,37 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManagement"
+        xmlns:UC="clr-namespace:HotelManagement.UC" x:Class="HotelManagement.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" x:Name="MainForm" Height="450" Width="800">
+    <DockPanel>
+        <Menu x:Name="menu" DockPanel.Dock="Top" HorizontalAlignment="Left" Height="40" Margin="0" VerticalAlignment="Top" Width="{Binding Width, ElementName=MainForm, Mode=OneWayToSource}">
+            <MenuItem  FontSize="16" Header="Account" Height="40" >
+                <MenuItem x:Name="ChangeItemMenu" Header="Change password" Click="ChangePass"/>
+                <MenuItem Header="Log out" Click="Logout"/>
+            </MenuItem>
+            <MenuItem x:Name="menuMngItem" FontSize="16" Header="Management" Height="40"  >
+                <MenuItem Header="Room" Width="{Binding ActualWidth, ElementName=menuMngItem, Mode=Default}" Click="ManagementRoom_Click"/>
+                <MenuItem x:Name="menuMngSrv" Header="Service" Click="ManagementService_Click"/>
+                <MenuItem x:Name="menuMngBk" Header="Booking" Click="ManagementBooking_Click"/>
+                <MenuItem x:Name="menuMngCus"  Header="Customer" Click="ManagementCustomer_Click"/>
+                <MenuItem x:Name="menuMngEmp" Header="Employee" Click="ManagementEmployee_Click"/>
+                
+            </MenuItem>
+            <MenuItem  FontSize="16" Header="Help" Height="40"  />
+
+
+        </Menu>
+        <Grid x:Name="grMain" Height="{Binding Height, ElementName=MainForm, Mode=OneWayToSource}" Width="{Binding Width, ElementName=MainForm, Mode=OneWayToSource}">
+            <Grid.Background>
+                <SolidColorBrush Color="#FFD3DEE2" Opacity="0.6"/>
+            </Grid.Background>
+        </Grid>
+
+
+    </DockPanel>
+
+</Window>

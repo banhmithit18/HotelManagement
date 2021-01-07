@@ -1,0 +1,28 @@
+﻿<Window x:Class="HotelManagement.Frm.AddCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManagement.Frm"
+        mc:Ignorable="d"
+     WindowStartupLocation="CenterScreen"
+        Icon="..\Icon\customer.ico"
+        ResizeMode="NoResize"
+        Title="Add Customer" Height="411.1" Width="707.987">
+    <Canvas HorizontalAlignment="Left" Height="383" VerticalAlignment="Top" Width="698" Margin="0,0,0,-1.4">
+        <Label Content="Customer ID Card: " Canvas.Left="59" Canvas.Top="50" FontSize="16"/>
+        <TextBox x:Name="tbIDCard" Height="27" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="50" Width="285" FontSize="16"/>
+        <Button Content="Check" Canvas.Left="576" Canvas.Top="47" Width="90" Click="Button_Click"/>
+        <Label Content="Customer Name" Canvas.Left="59" Canvas.Top="100" FontSize="16"/>
+        <TextBox x:Name="tbCusName" Height="27" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="100" Width="285" FontSize="16"/>
+        <Label Content="Customer Age" Canvas.Left="59" Canvas.Top="150" FontSize="16"/>
+        <TextBox x:Name="tbCusAge" Height="27" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="150" Width="285" FontSize="16" PreviewTextInput="AgeNumberValidation"/>
+        <Label Content="Customer Phone Number" Canvas.Left="59" Canvas.Top="200" FontSize="16"/>
+        <TextBox x:Name="tbCusPhone" Height="27" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="200" Width="285" FontSize="16" PreviewTextInput="PhoneNumberValidation"/>
+        <Label Content="Customer Address" Canvas.Left="59" Canvas.Top="250" FontSize="16"/>
+        <TextBox x:Name="tbCusAddress" Height="27" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="250" Width="285" FontSize="16"/>
+
+        <Button Content="Add" Canvas.Left="256" Canvas.Top="317" Width="189" Height="34" Click="Button_Click_1"/>
+
+    </Canvas>
+</Window>

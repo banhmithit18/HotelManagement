@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HOTELMANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROOMID" Type="int" />
+          <Property Name="CUSID" Type="int" />
+          <Property Name="CHECKINTIME" Type="varchar" MaxLength="100" />
+          <Property Name="CHECKOUTTIME" Type="varchar" MaxLength="100" />
+          <Property Name="BOOKINGDATE" Type="varchar" MaxLength="100" />
+          <Property Name="EMPID" Type="int" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCARD" Type="varchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="AGE" Type="int" />
+          <Property Name="PHONENUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCARD" Type="varchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="AGE" Type="int" />
+          <Property Name="PHONENUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="200" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="200" />
+          <Property Name="PASSWORD" Type="varchar(max)" />
+          <Property Name="ACCOUNTTYPE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ORDERDETAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDERID" Type="int" />
+          <Property Name="PRICE" Type="float" />
+          <Property Name="DISCOUNT" Type="float" />
+          <Property Name="date" Type="varchar" MaxLength="100" />
+          <Property Name="EMPID" Type="int" />
+        </EntityType>
+        <EntityType Name="ROOM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="TYPE" Type="nvarchar" MaxLength="100" />
+          <Property Name="CATEGORY" Type="nvarchar" MaxLength="100" />
+          <Property Name="PRICE" Type="float" />
+          <Property Name="NOTE" Type="nvarchar(max)" />
+          <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SERVICE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="TYPE" Type="nvarchar" MaxLength="100" />
+          <Property Name="PRICE" Type="float" />
+          <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SHIFTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SHIFTNAME" Type="varchar" MaxLength="100" />
+          <Property Name="STARTTIME" Type="varchar" MaxLength="20" />
+          <Property Name="ENDTIME" Type="varchar" MaxLength="20" />
+          <Property Name="EMPID" Type="int" />
+        </EntityType>
+        <EntityType Name="SRVORDER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSID" Type="int" />
+          <Property Name="SRVID" Type="int" />
+          <Property Name="ROOMID" Type="int" />
+          <Property Name="QUANTITY" Type="int" />
+          <Property Name="NOTE" Type="nvarchar(max)" />
+          <Property Name="PAYMENTSTATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="TRANSACTIONS">
+          <Key>
+            <PropertyRef Name="TRANSACTIONID" />
+          </Key>
+          <Property Name="TRANSACTIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS" Type="bit" />
+          <Property Name="CUSID" Type="int" />
+          <Property Name="AMOUNT" Type="float" />
+          <Property Name="PAYMENT" Type="varchar" MaxLength="50" />
+          <Property Name="PAYMENTINFO" Type="text" />
+          <Property Name="MESSAGE" Type="nvarchar" MaxLength="255" />
+          <Property Name="SECURITY" Type="int" />
+          <Property Name="CREATED" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_BOOKING_CUSTOMER">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="CUSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOKING_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOKING_ROOM">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="ROOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDERDETAIL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDERDETAIL">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDERDETAIL_SRVORDER">
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="0..1" />
+          <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SRVORDER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDERDETAIL">
+              <PropertyRef Name="ORDERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHIFTS_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="SHIFTS" Type="Self.SHIFTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SHIFTS">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SRVORDER_CUSTOMER">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SRVORDER">
+              <PropertyRef Name="CUSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SRVORDER_ROOM">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SRVORDER">
+              <PropertyRef Name="ROOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SRVORDER_SERVICE">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SRVORDER">
+              <PropertyRef Name="SRVID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTIONS_CUSTOMER">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="TRANSACTIONS" Type="Self.TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRANSACTIONS">
+              <PropertyRef Name="CUSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="UpdateRentDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Date" Type="varchar" Mode="In" />
+          <Parameter Name="RoomID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="HOTELMANAGEMENTModelStoreContainer">
+          <EntitySet Name="BOOKING" EntityType="Self.BOOKING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDERDETAIL" EntityType="Self.ORDERDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROOM" EntityType="Self.ROOM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICE" EntityType="Self.SERVICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHIFTS" EntityType="Self.SHIFTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SRVORDER" EntityType="Self.SRVORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BOOKING_CUSTOMER" Association="Self.FK_BOOKING_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOKING_EMPLOYEE" Association="Self.FK_BOOKING_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOKING_ROOM" Association="Self.FK_BOOKING_ROOM">
+            <End Role="ROOM" EntitySet="ROOM" />
+            <End Role="BOOKING" EntitySet="BOOKING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDERDETAIL_EMPLOYEE" Association="Self.FK_ORDERDETAIL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="ORDERDETAIL" EntitySet="ORDERDETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDERDETAIL_SRVORDER" Association="Self.FK_ORDERDETAIL_SRVORDER">
+            <End Role="SRVORDER" EntitySet="SRVORDER" />
+            <End Role="ORDERDETAIL" EntitySet="ORDERDETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHIFTS_EMPLOYEE" Association="Self.FK_SHIFTS_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="SHIFTS" EntitySet="SHIFTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SRVORDER_CUSTOMER" Association="Self.FK_SRVORDER_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="SRVORDER" EntitySet="SRVORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SRVORDER_ROOM" Association="Self.FK_SRVORDER_ROOM">
+            <End Role="ROOM" EntitySet="ROOM" />
+            <End Role="SRVORDER" EntitySet="SRVORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SRVORDER_SERVICE" Association="Self.FK_SRVORDER_SERVICE">
+            <End Role="SERVICE" EntitySet="SERVICE" />
+            <End Role="SRVORDER" EntitySet="SRVORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTIONS_CUSTOMER" Association="Self.FK_TRANSACTIONS_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HOTELMANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROOMID" Type="Int32" />
+          <Property Name="CUSID" Type="Int32" />
+          <Property Name="CHECKINTIME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CHECKOUTTIME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BOOKINGDATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMPID" Type="Int32" />
+          <Property Name="STATUS" Type="Boolean" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_BOOKING_CUSTOMER" FromRole="BOOKING" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_BOOKING_EMPLOYEE" FromRole="BOOKING" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="ROOM" Relationship="Self.FK_BOOKING_ROOM" FromRole="BOOKING" ToRole="ROOM" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCARD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AGE" Type="Int32" />
+          <Property Name="PHONENUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_BOOKING_CUSTOMER" FromRole="CUSTOMER" ToRole="BOOKING" />
+          <NavigationProperty Name="SRVORDERs" Relationship="Self.FK_SRVORDER_CUSTOMER" FromRole="CUSTOMER" ToRole="SRVORDER" />
+          <NavigationProperty Name="TRANSACTIONS" Relationship="Self.FK_TRANSACTIONS_CUSTOMER" FromRole="CUSTOMER" ToRole="TRANSACTIONS" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCARD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AGE" Type="Int32" />
+          <Property Name="PHONENUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ACCOUNTTYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_BOOKING_EMPLOYEE" FromRole="EMPLOYEE" ToRole="BOOKING" />
+          <NavigationProperty Name="ORDERDETAILs" Relationship="Self.FK_ORDERDETAIL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="ORDERDETAIL" />
+          <NavigationProperty Name="SHIFTS" Relationship="Self.FK_SHIFTS_EMPLOYEE" FromRole="EMPLOYEE" ToRole="SHIFTS" />
+        </EntityType>
+        <EntityType Name="ORDERDETAIL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDERID" Type="Int32" />
+          <Property Name="PRICE" Type="Double" />
+          <Property Name="DISCOUNT" Type="Double" />
+          <Property Name="date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMPID" Type="Int32" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_ORDERDETAIL_EMPLOYEE" FromRole="ORDERDETAIL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="SRVORDER" Relationship="Self.FK_ORDERDETAIL_SRVORDER" FromRole="ORDERDETAIL" ToRole="SRVORDER" />
+        </EntityType>
+        <EntityType Name="ROOM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Double" />
+          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_BOOKING_ROOM" FromRole="ROOM" ToRole="BOOKING" />
+          <NavigationProperty Name="SRVORDERs" Relationship="Self.FK_SRVORDER_ROOM" FromRole="ROOM" ToRole="SRVORDER" />
+        </EntityType>
+        <EntityType Name="SERVICE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Double" />
+          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SRVORDERs" Relationship="Self.FK_SRVORDER_SERVICE" FromRole="SERVICE" ToRole="SRVORDER" />
+        </EntityType>
+        <EntityType Name="SHIFT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SHIFTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STARTTIME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ENDTIME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPID" Type="Int32" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_SHIFTS_EMPLOYEE" FromRole="SHIFTS" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="SRVORDER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSID" Type="Int32" />
+          <Property Name="SRVID" Type="Int32" />
+          <Property Name="ROOMID" Type="Int32" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PAYMENTSTATUS" Type="Boolean" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_SRVORDER_CUSTOMER" FromRole="SRVORDER" ToRole="CUSTOMER" />
+          <NavigationProperty Name="ORDERDETAILs" Relationship="Self.FK_ORDERDETAIL_SRVORDER" FromRole="SRVORDER" ToRole="ORDERDETAIL" />
+          <NavigationProperty Name="ROOM" Relationship="Self.FK_SRVORDER_ROOM" FromRole="SRVORDER" ToRole="ROOM" />
+          <NavigationProperty Name="SERVICE" Relationship="Self.FK_SRVORDER_SERVICE" FromRole="SRVORDER" ToRole="SERVICE" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="TRANSACTIONID" />
+          </Key>
+          <Property Name="TRANSACTIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS" Type="Boolean" />
+          <Property Name="CUSID" Type="Int32" />
+          <Property Name="AMOUNT" Type="Double" />
+          <Property Name="PAYMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PAYMENTINFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MESSAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SECURITY" Type="Int32" />
+          <Property Name="CREATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_TRANSACTIONS_CUSTOMER" FromRole="TRANSACTIONS" ToRole="CUSTOMER" />
+        </EntityType>
+        <Association Name="FK_BOOKING_CUSTOMER">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="CUSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOKING_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOKING_ROOM">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="ROOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SRVORDER_CUSTOMER">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SRVORDER">
+              <PropertyRef Name="CUSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTIONS_CUSTOMER">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+          <End Role="TRANSACTIONS" Type="Self.TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRANSACTIONS">
+              <PropertyRef Name="CUSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDERDETAIL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDERDETAIL">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHIFTS_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="SHIFTS" Type="Self.SHIFT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SHIFTS">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDERDETAIL_SRVORDER">
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="0..1" />
+          <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SRVORDER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDERDETAIL">
+              <PropertyRef Name="ORDERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SRVORDER_ROOM">
+          <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROOM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SRVORDER">
+              <PropertyRef Name="ROOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SRVORDER_SERVICE">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+          <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SRVORDER">
+              <PropertyRef Name="SRVID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HOTELMANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOKINGs" EntityType="Self.BOOKING" />
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="ORDERDETAILs" EntityType="Self.ORDERDETAIL" />
+          <EntitySet Name="ROOMs" EntityType="Self.ROOM" />
+          <EntitySet Name="SERVICEs" EntityType="Self.SERVICE" />
+          <EntitySet Name="SHIFTS" EntityType="Self.SHIFT" />
+          <EntitySet Name="SRVORDERs" EntityType="Self.SRVORDER" />
+          <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTION" />
+          <AssociationSet Name="FK_BOOKING_CUSTOMER" Association="Self.FK_BOOKING_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOKING_EMPLOYEE" Association="Self.FK_BOOKING_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOKING_ROOM" Association="Self.FK_BOOKING_ROOM">
+            <End Role="ROOM" EntitySet="ROOMs" />
+            <End Role="BOOKING" EntitySet="BOOKINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SRVORDER_CUSTOMER" Association="Self.FK_SRVORDER_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="SRVORDER" EntitySet="SRVORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTIONS_CUSTOMER" Association="Self.FK_TRANSACTIONS_CUSTOMER">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDERDETAIL_EMPLOYEE" Association="Self.FK_ORDERDETAIL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="ORDERDETAIL" EntitySet="ORDERDETAILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHIFTS_EMPLOYEE" Association="Self.FK_SHIFTS_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="SHIFTS" EntitySet="SHIFTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDERDETAIL_SRVORDER" Association="Self.FK_ORDERDETAIL_SRVORDER">
+            <End Role="SRVORDER" EntitySet="SRVORDERs" />
+            <End Role="ORDERDETAIL" EntitySet="ORDERDETAILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SRVORDER_ROOM" Association="Self.FK_SRVORDER_ROOM">
+            <End Role="ROOM" EntitySet="ROOMs" />
+            <End Role="SRVORDER" EntitySet="SRVORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SRVORDER_SERVICE" Association="Self.FK_SRVORDER_SERVICE">
+            <End Role="SERVICE" EntitySet="SERVICEs" />
+            <End Role="SRVORDER" EntitySet="SRVORDERs" />
+          </AssociationSet>
+          <FunctionImport Name="UpdateRentDay">
+            <Parameter Name="Date" Mode="In" Type="String" />
+            <Parameter Name="RoomID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HOTELMANAGEMENTModelStoreContainer" CdmEntityContainer="HOTELMANAGEMENTEntities">
+          <EntitySetMapping Name="BOOKINGs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.BOOKING">
+              <MappingFragment StoreEntitySet="BOOKING">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ROOMID" ColumnName="ROOMID" />
+                <ScalarProperty Name="CUSID" ColumnName="CUSID" />
+                <ScalarProperty Name="CHECKINTIME" ColumnName="CHECKINTIME" />
+                <ScalarProperty Name="CHECKOUTTIME" ColumnName="CHECKOUTTIME" />
+                <ScalarProperty Name="BOOKINGDATE" ColumnName="BOOKINGDATE" />
+                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDCARD" ColumnName="IDCARD" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDCARD" ColumnName="IDCARD" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ACCOUNTTYPE" ColumnName="ACCOUNTTYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDERDETAILs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.ORDERDETAIL">
+              <MappingFragment StoreEntitySet="ORDERDETAIL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ORDERID" ColumnName="ORDERID" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DISCOUNT" ColumnName="DISCOUNT" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROOMs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.ROOM">
+              <MappingFragment StoreEntitySet="ROOM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICEs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.SERVICE">
+              <MappingFragment StoreEntitySet="SERVICE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHIFTS">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.SHIFT">
+              <MappingFragment StoreEntitySet="SHIFTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SHIFTNAME" ColumnName="SHIFTNAME" />
+                <ScalarProperty Name="STARTTIME" ColumnName="STARTTIME" />
+                <ScalarProperty Name="ENDTIME" ColumnName="ENDTIME" />
+                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SRVORDERs">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.SRVORDER">
+              <MappingFragment StoreEntitySet="SRVORDER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CUSID" ColumnName="CUSID" />
+                <ScalarProperty Name="SRVID" ColumnName="SRVID" />
+                <ScalarProperty Name="ROOMID" ColumnName="ROOMID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="PAYMENTSTATUS" ColumnName="PAYMENTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTIONS">
+            <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.TRANSACTION">
+              <MappingFragment StoreEntitySet="TRANSACTIONS">
+                <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="CUSID" ColumnName="CUSID" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="PAYMENT" ColumnName="PAYMENT" />
+                <ScalarProperty Name="PAYMENTINFO" ColumnName="PAYMENTINFO" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="SECURITY" ColumnName="SECURITY" />
+                <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateRentDay" FunctionName="HOTELMANAGEMENTModel.Store.UpdateRentDay" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

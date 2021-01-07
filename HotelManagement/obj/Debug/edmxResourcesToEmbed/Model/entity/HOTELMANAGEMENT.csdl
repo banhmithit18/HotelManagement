@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HOTELMANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BOOKING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROOMID" Type="Int32" />
+    <Property Name="CUSID" Type="Int32" />
+    <Property Name="CHECKINTIME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CHECKOUTTIME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BOOKINGDATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EMPID" Type="Int32" />
+    <Property Name="STATUS" Type="Boolean" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_BOOKING_CUSTOMER" FromRole="BOOKING" ToRole="CUSTOMER" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_BOOKING_EMPLOYEE" FromRole="BOOKING" ToRole="EMPLOYEE" />
+    <NavigationProperty Name="ROOM" Relationship="Self.FK_BOOKING_ROOM" FromRole="BOOKING" ToRole="ROOM" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCARD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AGE" Type="Int32" />
+    <Property Name="PHONENUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_BOOKING_CUSTOMER" FromRole="CUSTOMER" ToRole="BOOKING" />
+    <NavigationProperty Name="SRVORDERs" Relationship="Self.FK_SRVORDER_CUSTOMER" FromRole="CUSTOMER" ToRole="SRVORDER" />
+    <NavigationProperty Name="TRANSACTIONS" Relationship="Self.FK_TRANSACTIONS_CUSTOMER" FromRole="CUSTOMER" ToRole="TRANSACTIONS" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCARD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AGE" Type="Int32" />
+    <Property Name="PHONENUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="USERNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ACCOUNTTYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_BOOKING_EMPLOYEE" FromRole="EMPLOYEE" ToRole="BOOKING" />
+    <NavigationProperty Name="ORDERDETAILs" Relationship="Self.FK_ORDERDETAIL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="ORDERDETAIL" />
+    <NavigationProperty Name="SHIFTS" Relationship="Self.FK_SHIFTS_EMPLOYEE" FromRole="EMPLOYEE" ToRole="SHIFTS" />
+  </EntityType>
+  <EntityType Name="ORDERDETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ORDERID" Type="Int32" />
+    <Property Name="PRICE" Type="Double" />
+    <Property Name="DISCOUNT" Type="Double" />
+    <Property Name="date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EMPID" Type="Int32" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_ORDERDETAIL_EMPLOYEE" FromRole="ORDERDETAIL" ToRole="EMPLOYEE" />
+    <NavigationProperty Name="SRVORDER" Relationship="Self.FK_ORDERDETAIL_SRVORDER" FromRole="ORDERDETAIL" ToRole="SRVORDER" />
+  </EntityType>
+  <EntityType Name="ROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CATEGORY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRICE" Type="Double" />
+    <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BOOKINGs" Relationship="Self.FK_BOOKING_ROOM" FromRole="ROOM" ToRole="BOOKING" />
+    <NavigationProperty Name="SRVORDERs" Relationship="Self.FK_SRVORDER_ROOM" FromRole="ROOM" ToRole="SRVORDER" />
+  </EntityType>
+  <EntityType Name="SERVICE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRICE" Type="Double" />
+    <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SRVORDERs" Relationship="Self.FK_SRVORDER_SERVICE" FromRole="SERVICE" ToRole="SRVORDER" />
+  </EntityType>
+  <EntityType Name="SHIFT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SHIFTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="STARTTIME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ENDTIME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMPID" Type="Int32" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_SHIFTS_EMPLOYEE" FromRole="SHIFTS" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="SRVORDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CUSID" Type="Int32" />
+    <Property Name="SRVID" Type="Int32" />
+    <Property Name="ROOMID" Type="Int32" />
+    <Property Name="QUANTITY" Type="Int32" />
+    <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PAYMENTSTATUS" Type="Boolean" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_SRVORDER_CUSTOMER" FromRole="SRVORDER" ToRole="CUSTOMER" />
+    <NavigationProperty Name="ORDERDETAILs" Relationship="Self.FK_ORDERDETAIL_SRVORDER" FromRole="SRVORDER" ToRole="ORDERDETAIL" />
+    <NavigationProperty Name="ROOM" Relationship="Self.FK_SRVORDER_ROOM" FromRole="SRVORDER" ToRole="ROOM" />
+    <NavigationProperty Name="SERVICE" Relationship="Self.FK_SRVORDER_SERVICE" FromRole="SRVORDER" ToRole="SERVICE" />
+  </EntityType>
+  <EntityType Name="TRANSACTION">
+    <Key>
+      <PropertyRef Name="TRANSACTIONID" />
+    </Key>
+    <Property Name="TRANSACTIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STATUS" Type="Boolean" />
+    <Property Name="CUSID" Type="Int32" />
+    <Property Name="AMOUNT" Type="Double" />
+    <Property Name="PAYMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PAYMENTINFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MESSAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SECURITY" Type="Int32" />
+    <Property Name="CREATED" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_TRANSACTIONS_CUSTOMER" FromRole="TRANSACTIONS" ToRole="CUSTOMER" />
+  </EntityType>
+  <Association Name="FK_BOOKING_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="CUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKING_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="EMPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKING_ROOM">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="ROOMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SRVORDER_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SRVORDER">
+        <PropertyRef Name="CUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTIONS_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="TRANSACTIONS" Type="Self.TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TRANSACTIONS">
+        <PropertyRef Name="CUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERDETAIL_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDERDETAIL">
+        <PropertyRef Name="EMPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SHIFTS_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="SHIFTS" Type="Self.SHIFT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SHIFTS">
+        <PropertyRef Name="EMPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERDETAIL_SRVORDER">
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="0..1" />
+    <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SRVORDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDERDETAIL">
+        <PropertyRef Name="ORDERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SRVORDER_ROOM">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SRVORDER">
+        <PropertyRef Name="ROOMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SRVORDER_SERVICE">
+    <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SRVORDER">
+        <PropertyRef Name="SRVID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HOTELMANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BOOKINGs" EntityType="Self.BOOKING" />
+    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+    <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+    <EntitySet Name="ORDERDETAILs" EntityType="Self.ORDERDETAIL" />
+    <EntitySet Name="ROOMs" EntityType="Self.ROOM" />
+    <EntitySet Name="SERVICEs" EntityType="Self.SERVICE" />
+    <EntitySet Name="SHIFTS" EntityType="Self.SHIFT" />
+    <EntitySet Name="SRVORDERs" EntityType="Self.SRVORDER" />
+    <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTION" />
+    <AssociationSet Name="FK_BOOKING_CUSTOMER" Association="Self.FK_BOOKING_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="BOOKING" EntitySet="BOOKINGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKING_EMPLOYEE" Association="Self.FK_BOOKING_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="BOOKING" EntitySet="BOOKINGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKING_ROOM" Association="Self.FK_BOOKING_ROOM">
+      <End Role="ROOM" EntitySet="ROOMs" />
+      <End Role="BOOKING" EntitySet="BOOKINGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SRVORDER_CUSTOMER" Association="Self.FK_SRVORDER_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="SRVORDER" EntitySet="SRVORDERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTIONS_CUSTOMER" Association="Self.FK_TRANSACTIONS_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERDETAIL_EMPLOYEE" Association="Self.FK_ORDERDETAIL_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="ORDERDETAIL" EntitySet="ORDERDETAILs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SHIFTS_EMPLOYEE" Association="Self.FK_SHIFTS_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="SHIFTS" EntitySet="SHIFTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERDETAIL_SRVORDER" Association="Self.FK_ORDERDETAIL_SRVORDER">
+      <End Role="SRVORDER" EntitySet="SRVORDERs" />
+      <End Role="ORDERDETAIL" EntitySet="ORDERDETAILs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SRVORDER_ROOM" Association="Self.FK_SRVORDER_ROOM">
+      <End Role="ROOM" EntitySet="ROOMs" />
+      <End Role="SRVORDER" EntitySet="SRVORDERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SRVORDER_SERVICE" Association="Self.FK_SRVORDER_SERVICE">
+      <End Role="SERVICE" EntitySet="SERVICEs" />
+      <End Role="SRVORDER" EntitySet="SRVORDERs" />
+    </AssociationSet>
+    <FunctionImport Name="UpdateRentDay">
+      <Parameter Name="Date" Mode="In" Type="String" />
+      <Parameter Name="RoomID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

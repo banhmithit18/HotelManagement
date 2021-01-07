@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HOTELMANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BOOKING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROOMID" Type="int" />
+    <Property Name="CUSID" Type="int" />
+    <Property Name="CHECKINTIME" Type="varchar" MaxLength="100" />
+    <Property Name="CHECKOUTTIME" Type="varchar" MaxLength="100" />
+    <Property Name="BOOKINGDATE" Type="varchar" MaxLength="100" />
+    <Property Name="EMPID" Type="int" />
+    <Property Name="STATUS" Type="bit" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCARD" Type="varchar" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+    <Property Name="AGE" Type="int" />
+    <Property Name="PHONENUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCARD" Type="varchar" MaxLength="50" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+    <Property Name="AGE" Type="int" />
+    <Property Name="PHONENUMBER" Type="varchar" MaxLength="20" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+    <Property Name="USERNAME" Type="varchar" MaxLength="200" />
+    <Property Name="PASSWORD" Type="varchar(max)" />
+    <Property Name="ACCOUNTTYPE" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ORDERDETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ORDERID" Type="int" />
+    <Property Name="PRICE" Type="float" />
+    <Property Name="DISCOUNT" Type="float" />
+    <Property Name="date" Type="varchar" MaxLength="100" />
+    <Property Name="EMPID" Type="int" />
+  </EntityType>
+  <EntityType Name="ROOM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+    <Property Name="TYPE" Type="nvarchar" MaxLength="100" />
+    <Property Name="CATEGORY" Type="nvarchar" MaxLength="100" />
+    <Property Name="PRICE" Type="float" />
+    <Property Name="NOTE" Type="nvarchar(max)" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SERVICE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+    <Property Name="TYPE" Type="nvarchar" MaxLength="100" />
+    <Property Name="PRICE" Type="float" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SHIFTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SHIFTNAME" Type="varchar" MaxLength="100" />
+    <Property Name="STARTTIME" Type="varchar" MaxLength="20" />
+    <Property Name="ENDTIME" Type="varchar" MaxLength="20" />
+    <Property Name="EMPID" Type="int" />
+  </EntityType>
+  <EntityType Name="SRVORDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CUSID" Type="int" />
+    <Property Name="SRVID" Type="int" />
+    <Property Name="ROOMID" Type="int" />
+    <Property Name="QUANTITY" Type="int" />
+    <Property Name="NOTE" Type="nvarchar(max)" />
+    <Property Name="PAYMENTSTATUS" Type="bit" />
+  </EntityType>
+  <EntityType Name="TRANSACTIONS">
+    <Key>
+      <PropertyRef Name="TRANSACTIONID" />
+    </Key>
+    <Property Name="TRANSACTIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STATUS" Type="bit" />
+    <Property Name="CUSID" Type="int" />
+    <Property Name="AMOUNT" Type="float" />
+    <Property Name="PAYMENT" Type="varchar" MaxLength="50" />
+    <Property Name="PAYMENTINFO" Type="text" />
+    <Property Name="MESSAGE" Type="nvarchar" MaxLength="255" />
+    <Property Name="SECURITY" Type="int" />
+    <Property Name="CREATED" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_BOOKING_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="CUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKING_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="EMPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKING_ROOM">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="BOOKING" Type="Self.BOOKING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BOOKING">
+        <PropertyRef Name="ROOMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERDETAIL_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDERDETAIL">
+        <PropertyRef Name="EMPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDERDETAIL_SRVORDER">
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="0..1" />
+    <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SRVORDER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ORDERDETAIL">
+        <PropertyRef Name="ORDERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SHIFTS_EMPLOYEE">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="SHIFTS" Type="Self.SHIFTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SHIFTS">
+        <PropertyRef Name="EMPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SRVORDER_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SRVORDER">
+        <PropertyRef Name="CUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SRVORDER_ROOM">
+    <End Role="ROOM" Type="Self.ROOM" Multiplicity="0..1" />
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROOM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SRVORDER">
+        <PropertyRef Name="ROOMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SRVORDER_SERVICE">
+    <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+    <End Role="SRVORDER" Type="Self.SRVORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SRVORDER">
+        <PropertyRef Name="SRVID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTIONS_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="TRANSACTIONS" Type="Self.TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TRANSACTIONS">
+        <PropertyRef Name="CUSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="UpdateRentDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Date" Type="varchar" Mode="In" />
+    <Parameter Name="RoomID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="HOTELMANAGEMENTModelStoreContainer">
+    <EntitySet Name="BOOKING" EntityType="Self.BOOKING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERDETAIL" EntityType="Self.ORDERDETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROOM" EntityType="Self.ROOM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICE" EntityType="Self.SERVICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SHIFTS" EntityType="Self.SHIFTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SRVORDER" EntityType="Self.SRVORDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BOOKING_CUSTOMER" Association="Self.FK_BOOKING_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="BOOKING" EntitySet="BOOKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKING_EMPLOYEE" Association="Self.FK_BOOKING_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="BOOKING" EntitySet="BOOKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKING_ROOM" Association="Self.FK_BOOKING_ROOM">
+      <End Role="ROOM" EntitySet="ROOM" />
+      <End Role="BOOKING" EntitySet="BOOKING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERDETAIL_EMPLOYEE" Association="Self.FK_ORDERDETAIL_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="ORDERDETAIL" EntitySet="ORDERDETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDERDETAIL_SRVORDER" Association="Self.FK_ORDERDETAIL_SRVORDER">
+      <End Role="SRVORDER" EntitySet="SRVORDER" />
+      <End Role="ORDERDETAIL" EntitySet="ORDERDETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SHIFTS_EMPLOYEE" Association="Self.FK_SHIFTS_EMPLOYEE">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="SHIFTS" EntitySet="SHIFTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SRVORDER_CUSTOMER" Association="Self.FK_SRVORDER_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="SRVORDER" EntitySet="SRVORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SRVORDER_ROOM" Association="Self.FK_SRVORDER_ROOM">
+      <End Role="ROOM" EntitySet="ROOM" />
+      <End Role="SRVORDER" EntitySet="SRVORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SRVORDER_SERVICE" Association="Self.FK_SRVORDER_SERVICE">
+      <End Role="SERVICE" EntitySet="SERVICE" />
+      <End Role="SRVORDER" EntitySet="SRVORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTIONS_CUSTOMER" Association="Self.FK_TRANSACTIONS_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

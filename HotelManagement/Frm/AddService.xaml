@@ -1,0 +1,26 @@
+﻿<Window x:Class="HotelManagement.Frm.AddService"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManagement.Frm"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="..\Icon\service.ico"
+        Title="Add Service" ResizeMode="NoResize" Height="351.831" Width="618.8">
+    <Canvas HorizontalAlignment="Left" Height="323" VerticalAlignment="Top" Width="609" Margin="0,0,0,-0.6">
+        <Label Content="Service" Canvas.Left="43" Canvas.Top="45" FontSize="16"/>
+        <Label Content="Type:" Canvas.Left="43" Canvas.Top="115" FontSize="16"/>
+        <Label Content="Price:" Canvas.Left="43" Canvas.Top="185" FontSize="16"/>
+        <TextBox x:Name="tbName" Height="34" Canvas.Left="146" TextWrapping="Wrap" Text="" Canvas.Top="45" Width="360" FontSize="16"/>
+        <TextBox x:Name="tbPrice" Height="34" Canvas.Left="146" TextWrapping="Wrap" Text="" Canvas.Top="185" Width="360" FontSize="16" PreviewTextInput="NumberValidationTextBox"/>
+        <ComboBox x:Name="boxType" Canvas.Left="146" Canvas.Top="115" Width="360" FontSize="16" SelectedIndex="0" >
+            <ComboBoxItem Content="Food" HorizontalAlignment="Left" Width="358.4"/>
+            <ComboBoxItem Content="Room" HorizontalAlignment="Left" Width="358.4"/>
+            <ComboBoxItem Content="Others" HorizontalAlignment="Left" Width="358.4"/>
+        </ComboBox>
+        <Button Content="Save" Canvas.Left="215" Canvas.Top="252" Width="173" Click="Button_Click"/>
+    </Canvas>
+
+
+</Window>

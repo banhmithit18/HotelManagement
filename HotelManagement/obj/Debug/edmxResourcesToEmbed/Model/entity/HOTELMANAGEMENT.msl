@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HOTELMANAGEMENTModelStoreContainer" CdmEntityContainer="HOTELMANAGEMENTEntities">
+    <EntitySetMapping Name="BOOKINGs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.BOOKING">
+        <MappingFragment StoreEntitySet="BOOKING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ROOMID" ColumnName="ROOMID" />
+          <ScalarProperty Name="CUSID" ColumnName="CUSID" />
+          <ScalarProperty Name="CHECKINTIME" ColumnName="CHECKINTIME" />
+          <ScalarProperty Name="CHECKOUTTIME" ColumnName="CHECKOUTTIME" />
+          <ScalarProperty Name="BOOKINGDATE" ColumnName="BOOKINGDATE" />
+          <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDCARD" ColumnName="IDCARD" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDCARD" ColumnName="IDCARD" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ACCOUNTTYPE" ColumnName="ACCOUNTTYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERDETAILs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.ORDERDETAIL">
+        <MappingFragment StoreEntitySet="ORDERDETAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ORDERID" ColumnName="ORDERID" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DISCOUNT" ColumnName="DISCOUNT" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROOMs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.ROOM">
+        <MappingFragment StoreEntitySet="ROOM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICEs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.SERVICE">
+        <MappingFragment StoreEntitySet="SERVICE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SHIFTS">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.SHIFT">
+        <MappingFragment StoreEntitySet="SHIFTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SHIFTNAME" ColumnName="SHIFTNAME" />
+          <ScalarProperty Name="STARTTIME" ColumnName="STARTTIME" />
+          <ScalarProperty Name="ENDTIME" ColumnName="ENDTIME" />
+          <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SRVORDERs">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.SRVORDER">
+        <MappingFragment StoreEntitySet="SRVORDER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CUSID" ColumnName="CUSID" />
+          <ScalarProperty Name="SRVID" ColumnName="SRVID" />
+          <ScalarProperty Name="ROOMID" ColumnName="ROOMID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="PAYMENTSTATUS" ColumnName="PAYMENTSTATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACTIONS">
+      <EntityTypeMapping TypeName="HOTELMANAGEMENTModel.TRANSACTION">
+        <MappingFragment StoreEntitySet="TRANSACTIONS">
+          <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CUSID" ColumnName="CUSID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="PAYMENT" ColumnName="PAYMENT" />
+          <ScalarProperty Name="PAYMENTINFO" ColumnName="PAYMENTINFO" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="SECURITY" ColumnName="SECURITY" />
+          <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UpdateRentDay" FunctionName="HOTELMANAGEMENTModel.Store.UpdateRentDay" />
+  </EntityContainerMapping>
+</Mapping>

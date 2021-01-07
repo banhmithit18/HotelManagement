@@ -1,0 +1,23 @@
+﻿<Window x:Class="HotelManagement.Frm.ChangePass"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManagement.Frm"
+        mc:Ignorable="d"
+       WindowStartupLocation="CenterScreen"
+        Icon="..\Icon\edit-button.ico"
+        Title="Change Password" ResizeMode="NoResize" Height="290.672" Width="489.623">
+    <Canvas HorizontalAlignment="Left" Height="257" VerticalAlignment="Top" Width="480">
+        <Label Content="Old Password" Canvas.Left="59" Canvas.Top="50" FontSize="16"/>
+        <PasswordBox x:Name="tbOldPass" Canvas.Left="180" Canvas.Top="50" Width="250" FontSize="16" PasswordChar="•"/>
+        <TextBox x:Name="tbOldPassUnmask" Canvas.Left="180" Canvas.Top="50" Width="250" FontSize="16" Visibility="Hidden"/>
+        <TextBlock x:Name="ShowOldPassword" Text="SHOW" PreviewMouseDown="ShowOldPassword_PreviewMouseDown" PreviewMouseUp="ShowOldPassword_PreviewMouseUp" MouseLeave="ShowOldPassword_MouseLeave" Canvas.Left="384" Canvas.Top="58"/>
+
+        <Label Content="New Password" Canvas.Left="59" Canvas.Top="100" FontSize="16"/>
+        <PasswordBox x:Name="tbPass" Canvas.Left="180" Canvas.Top="100" Width="250" FontSize="16" PasswordChar="•"/>
+        <TextBox x:Name="tbPassUnmask" Canvas.Left="180" Canvas.Top="100" Width="250" FontSize="16" Visibility="Hidden"/>
+        <TextBlock x:Name="ShowPassword" Text="SHOW" PreviewMouseDown="ShowPassword_PreviewMouseDown" PreviewMouseUp="ShowPassword_PreviewMouseUp" MouseLeave="ShowPassword_MouseLeave" Canvas.Left="384" Canvas.Top="108"/>
+        <Button Content="Save" Canvas.Left="170" Canvas.Top="185" Width="158" Height="32" Click="Button_Click"/>
+    </Canvas>
+</Window>

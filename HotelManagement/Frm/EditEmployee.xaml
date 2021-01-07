@@ -1,0 +1,32 @@
+﻿<Window x:Class="HotelManagement.Frm.EditEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManagement.Frm"
+         WindowStartupLocation="CenterScreen"
+        Icon="..\Icon\employee.ico"
+        ResizeMode="NoResize"
+        Title="Edit Employee" Height="511.669" Width="621.055">
+    <Canvas HorizontalAlignment="Left" Height="484" VerticalAlignment="Top" Width="611" Margin="0,0,0,-1.6">
+        <Label Content="ID Card: " Canvas.Left="59" Canvas.Top="50" FontSize="16"/>
+        <TextBox x:Name="tbIDCard" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="50" Width="285" FontSize="16"/>
+        <Label Content="Name" Canvas.Left="59" Canvas.Top="100" FontSize="16"/>
+        <TextBox x:Name="tbName"  Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="100" Width="285" FontSize="16"/>
+        <Label Content="Age" Canvas.Left="59" Canvas.Top="150" FontSize="16"/>
+        <TextBox x:Name="tbAge" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="150" Width="285" FontSize="16" PreviewTextInput="AgeNumberValidation"/>
+        <Label Content="Phone Number" Canvas.Left="59" Canvas.Top="200" FontSize="16"/>
+        <TextBox x:Name="tbPhone" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="200" Width="285" FontSize="16" PreviewTextInput="PhoneNumberValidation"/>
+        <Label Content="Email" Canvas.Left="59" Canvas.Top="250" FontSize="16"/>
+        <TextBox x:Name="tbEmail" Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="250" Width="285" FontSize="16"/>
+        <Label Content="Address" Canvas.Left="59" Canvas.Top="300" FontSize="16"/>
+        <TextBox x:Name="tbAddress"  Canvas.Left="256" TextWrapping="Wrap" Text="" Canvas.Top="300" Width="285" FontSize="16"/>
+        <Label Content="Type" Canvas.Left="59" Canvas.Top="350" FontSize="16"/>
+        <ComboBox x:Name="boxType" Canvas.Left="256" Canvas.Top="350" Width="285" FontSize="16" SelectedIndex="1">
+            <ComboBoxItem Content="Admin" HorizontalAlignment="Left" Width="285" />
+            <ComboBoxItem Content="Employee" HorizontalAlignment="Left" Width="285"/>
+        </ComboBox>
+        <Button Content="Save " Canvas.Left="195" Canvas.Top="426" Width="189" Height="34" Click="Button_Click" />
+
+    </Canvas>
+</Window>

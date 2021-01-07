@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92930DA2-7481-4674-A235-441D4100D67C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HotelManagement</RootNamespace>
+    <AssemblyName>HotelManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=3.2.0.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Frm\AddCustomer.xaml.cs">
+      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\AddEmployee.xaml.cs">
+      <DependentUpon>AddEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\AddRoom.xaml.cs">
+      <DependentUpon>AddRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\AddService.xaml.cs">
+      <DependentUpon>AddService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\Booking.xaml.cs">
+      <DependentUpon>Booking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\ChangeCheckInDate.xaml.cs">
+      <DependentUpon>ChangeCheckInDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\ChangePass.xaml.cs">
+      <DependentUpon>ChangePass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\ChangeRoom.xaml.cs">
+      <DependentUpon>ChangeRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CheckBill.xaml.cs">
+      <DependentUpon>CheckBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CheckIn.xaml.cs">
+      <DependentUpon>CheckIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\EditCustomer.xaml.cs">
+      <DependentUpon>EditCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\EditEmployee.xaml.cs">
+      <DependentUpon>EditEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\EditNote.xaml.cs">
+      <DependentUpon>EditNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\EditService.xaml.cs">
+      <DependentUpon>EditService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\LoginForm.xaml.cs">
+      <DependentUpon>LoginForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\OrderService.xaml.cs">
+      <DependentUpon>OrderService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\dao\BillDao.cs" />
+    <Compile Include="Model\dao\BookingDao.cs" />
+    <Compile Include="Model\dao\CustomerDao.cs" />
+    <Compile Include="Model\dao\EmployeeDao.cs" />
+    <Compile Include="Model\dao\OrderDetailDao.cs" />
+    <Compile Include="Model\dao\RoomDao.cs" />
+    <Compile Include="Model\dao\ServiceDao.cs" />
+    <Compile Include="Model\dao\SrvOrderDao.cs" />
+    <Compile Include="Model\entity\BOOKING.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\CUSTOMER.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\EMPLOYEE.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\HOTELMANAGEMENT.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOTELMANAGEMENT.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\HOTELMANAGEMENT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\HOTELMANAGEMENT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOTELMANAGEMENT.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\ORDERDETAIL.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\ROOM.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\SERVICE.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\SHIFT.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\SRVORDER.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\entity\TRANSACTION.cs">
+      <DependentUpon>HOTELMANAGEMENT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\view\BillView.cs" />
+    <Compile Include="Model\view\BookingView.cs" />
+    <Compile Include="Model\view\CustomerView.cs" />
+    <Compile Include="Model\view\EmployeeView.cs" />
+    <Compile Include="Model\view\RoomView.cs" />
+    <Compile Include="Model\view\ServiceView.cs" />
+    <Compile Include="UC\BookingManagement.xaml.cs">
+      <DependentUpon>BookingManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\CustomerManagement.xaml.cs">
+      <DependentUpon>CustomerManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\EmployeeManagement.xaml.cs">
+      <DependentUpon>EmployeeManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\RoomManagement.xaml.cs">
+      <DependentUpon>RoomManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\ServiceManagement.xaml.cs">
+      <DependentUpon>ServiceManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\RowToIndexConverter.cs" />
+    <Compile Include="Utilities\ValueToBrushConverter.cs" />
+    <Page Include="Frm\AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\AddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\AddRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\AddService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\Booking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\ChangeCheckInDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\ChangePass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\ChangeRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\CheckBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\CheckIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\EditCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\EditNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\EditService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\LoginForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frm\OrderService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UC\BookingManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\CustomerManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\EmployeeManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\RoomManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\ServiceManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\entity\HOTELMANAGEMENT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HOTELMANAGEMENT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\entity\HOTELMANAGEMENT.edmx.diagram">
+      <DependentUpon>HOTELMANAGEMENT.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\check-in.ico" />
+    <Resource Include="Icon\service.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\edit-button.ico" />
+    <Resource Include="Icon\calendar.ico" />
+    <Resource Include="Icon\customer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\order.ico" />
+    <Resource Include="Icon\Bill.ico" />
+    <Resource Include="Icon\employee.ico" />
+    <Resource Include="Icon\login.ico" />
+    <Content Include="Model\entity\HOTELMANAGEMENT.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HOTELMANAGEMENT.edmx</DependentUpon>
+      <LastGenOutput>HOTELMANAGEMENT.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\entity\HOTELMANAGEMENT.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HOTELMANAGEMENT.edmx</DependentUpon>
+      <LastGenOutput>HOTELMANAGEMENT.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets'))" />
+  </Target>
+</Project>
